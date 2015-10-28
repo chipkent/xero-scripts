@@ -2,6 +2,7 @@
 # 
 # Converts an Amazon order history download into a CSV to import into Xero
 # Generate Amazon report (Items): https://www.amazon.com/gp/b2b/reports
+# Import into Xero:  https://go.xero.com/Accounts/Payable/Dashboard/
 #
 
 import sys
