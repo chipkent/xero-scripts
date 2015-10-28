@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # 
 # Converts an Amazon order history download into a CSV to import into Xero
-# Generate Amazon report: https://www.amazon.com/gp/b2b/reports
+# Generate Amazon report (Items): https://www.amazon.com/gp/b2b/reports
 #
 
 import sys
