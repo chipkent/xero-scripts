@@ -210,7 +210,7 @@ if len(sys.argv) !=3:
 
 fileNameItem = sys.argv[1]
 fileNameOrder = sys.argv[2]
-fileNameOutput = fileNameItem.replace('.csv','.NEW_TEST.csv')
+fileNameOutput = fileNameItem.replace('.csv','.XERO.csv')
 logging.info("fileNameItem: %s", fileNameItem)
 logging.info("fileNameOrder: %s", fileNameOrder)
 logging.warn("fileNameOutput: %s", fileNameOutput)
