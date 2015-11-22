@@ -84,6 +84,7 @@ class OrderAdjustments:
 
 			try:
 				orv = orderReport[key]
+
 				taxAdjustment = float(orv["Tax Charged"]) - value["Item Subtotal Tax"] 
 				totalAdjustment = float(orv["Shipping Charge"]) - float(orv["Total Promotions"]) + taxAdjustment
 				totalAdjustmentPerUnit = totalAdjustment / value["Quantity"]
@@ -98,12 +99,19 @@ class OrderAdjustments:
 					value["Item Subtotal Tax"], orv["Tax Charged"], taxAdjustment, totalAdjustmentPerUnit )
 		
 				if abs(v1-v2) > 1e-5:
-					logging.critical("Failed Consistency Check %s %s %s %s %s %s", key, v1, v2, v1-v2, taxAdjustment, totalAdjustment)
+					logging.critical("Failed Order Adjustments Consistency Check %s %s %s %s %s %s", key, v1, v2, v1-v2, taxAdjustment, totalAdjustment)
 
  
 			except KeyError as e:
 				# Handle cases where the order report does not contain any information for the key.
 				logging.error("No Order Report Entry %s **** Shipping Soon?", key)
+				value["Tax Adjustment"] = 0.0
+				value["Total Adjustment"] = 0.0
+				value["Total Adjustment Per Unit"] = 0.0
+
+			except ValueError as e:
+				# Handle cases where the order report does not contain any information for the key.
+				logging.error("Missing Order Report Data %s %s **** Shipment planned?", key, orderReport[key])
 				value["Tax Adjustment"] = 0.0
 				value["Total Adjustment"] = 0.0
 				value["Total Adjustment Per Unit"] = 0.0
