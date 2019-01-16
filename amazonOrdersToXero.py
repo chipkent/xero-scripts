@@ -32,8 +32,8 @@ def dict_add(d1, d2):
         rst = {}
 
         for k in keys:
-                s1 = d1[k] if kin d1 else "0.0"
-                s2 = d2[k] if kin d2 else "0.0"
+                s1 = d1[k] if k in d1 else "0.0"
+                s2 = d2[k] if k in d2 else "0.0"
                 v1 = float(s1)
                 v2 = float(s2)
                 v = v1 + v2
