@@ -24,6 +24,24 @@ def skip_row(row):
 	'''Should this row in the Amazon Item Report be skipped'''
 	return row["Order Status"] == "Cancelled" and row["Quantity"] == "0"
 
+def dict_add(d1, d2):
+        keys = set()
+        keys.update(d1.keys())
+        keys.update(d2.keys())
+
+        rst = {}
+
+        for k in keys:
+                s1 = d1[k] if kin d1 else "0.0"
+                s2 = d2[k] if kin d2 else "0.0"
+                v1 = float(s1)
+                v2 = float(s2)
+                v = v1 + v2
+                x = str(round(v,2))
+                rst[k] = x
+
+        return rst
+
 class OrderReport:
 	'''Data from the Amazon Order Report'''
 
@@ -40,9 +58,9 @@ class OrderReport:
 					value[field] = (row[field].replace('$',''))
 
 				if key in self._map:
-					raise Exception("Duplicate: ", key, self._map[key], value)
-
-				self._map[key] = value
+					self._map[key] = dict_add(self._map[key], value)
+				else:
+					self._map[key] = value
 
 	def __getitem__(self, key):
 		return self._map[key]
