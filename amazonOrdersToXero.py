@@ -58,6 +58,7 @@ class OrderReport:
 					value[field] = (row[field].replace('$',''))
 
 				if key in self._map:
+					logging.warn("Combined order report entries: %s", key)
 					self._map[key] = dict_add(self._map[key], value)
 				else:
 					self._map[key] = value
